@@ -44,7 +44,8 @@ class SaveAfter implements \Magento\Framework\Event\ObserverInterface
         \Ebizmarts\MailChimp\Model\MailChimpSyncEcommerce $ecommerce,
         \Ebizmarts\MailChimp\Helper\Data $helper,
         \Ebizmarts\MailChimp\Model\Api\Subscriber $subscriberApi,
-        \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
+        \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory,
+        
     ) {
 
         $this->_ecommerce           = $ecommerce;
@@ -61,6 +62,7 @@ class SaveAfter implements \Magento\Framework\Event\ObserverInterface
         $factory = $this->_subscriberFactory->create();
         $subscriber = $observer->getSubscriber();
         $isCustomer = $subscriber->getCustomerId();
+        $isCustomer = false;
         if ($isCustomer) {
             $subscriberOld = $factory->loadBySubscriberEmail($subscriber->getCustomerId(), $subscriber->getStoreId());
         }
